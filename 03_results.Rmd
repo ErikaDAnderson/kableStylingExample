@@ -1,0 +1,20 @@
+# Results
+
+```{r}
+
+# load example data
+catch1 <- read.csv("Data/catch1.csv")
+  
+# kable styling with repeating header over multiple pages
+csasdown::csas_table(
+  catch1,
+  caption = "Example catch table",
+  format = "latex",
+  landscape = TRUE,
+  repeat_header = TRUE,
+  font_size = 8) %>%
+  column_spec(column = 1, width = "3.6 cm") %>%
+  add_header_above(c("Tows", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14")) 
+  
+```
+
