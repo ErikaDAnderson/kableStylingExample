@@ -37,3 +37,5 @@ vignettes/*.pdf
 techreport.log
 _book/techreport.pdf
 _book/techreport.tex
+_book/techreport.tex
+techreport.log
