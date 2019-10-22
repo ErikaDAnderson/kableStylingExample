@@ -1,20 +1,39 @@
 # Results
 
-```{r}
+## Example with repeat_header 
+```{r KableFormating}
 
-# load example data
-catch1 <- read.csv("Data/catch1.csv")
-  
+widelong_df2 <- widelong_df %>%
+  select(-X15)
+
+
 # kable styling with repeating header over multiple pages
 csasdown::csas_table(
-  catch1,
-  caption = "Example catch table",
+  widelong_df2,
+  caption = "Example wide Long Table with header over multiple pages",
+  longtable = TRUE,
   format = "latex",
   landscape = TRUE,
-  repeat_header = TRUE,
   font_size = 8) %>%
   column_spec(column = 1, width = "3.6 cm") %>%
-  add_header_above(c("Tows", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14")) 
+  add_header_above(c("Tows", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14")) %>%
+kable_styling(latex_options = c("repeat_header"))
   
+```
+
+## Example from web
+
+```{r}
+long_dt <- rbind(mtcars, mtcars)
+
+kable(
+      long_dt, 
+      format    = "latex", 
+      longtable = T, 
+      booktabs  = T, 
+      caption   = "Longtable from web using kable"
+      ) %>%
+add_header_above(c(" ", "Group 1" = 5, "Group 2" = 6)) %>%
+kable_styling(latex_options = c("repeat_header"))
 ```
 
