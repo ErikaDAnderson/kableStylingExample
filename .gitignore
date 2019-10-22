@@ -34,3 +34,6 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+techreport.log
+_book/techreport.pdf
+_book/techreport.tex
