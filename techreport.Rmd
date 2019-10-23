@@ -1,0 +1,138 @@
+---
+title: "Title Here (*Latin Species Name*)"
+year: 20XX
+report_number: nnn
+author: |
+  First. M. Last^1^ and
+  Alex B. Smith^2^
+author_list: "Last, F.M. and Smith, A.B."
+region: Pacific Region
+address: |
+  ^1^Pacific Biological Station\
+     Fisheries and Oceans Canada, 3190 Hammond Bay Road\
+     Nanaimo, British Columbia, V9T 6N7, Canada\
+  ^2^Far, far away\
+     Another Galaxy
+phone: "(555) 555-5555"
+author_footnote: "Email: First.Author@dfo-mpo.gc.ca | telephone: (250) 756-5555"
+abstract: |
+  Here is the abstract text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+abstract_other: |
+  Voici le résumé. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+output:
+ csasdown::techreport_pdf:
+   french: false
+type:
+  techreport
+# ------------
+# End of options to set
+knit: bookdown::render_book
+site: bookdown::bookdown_site
+link-citations: true
+bibliography: bib/refs.bib
+csl: csl/csas.csl
+lot: true
+lof: true
+# Any extra LaTeX code for the header:
+# header-includes:
+# - \usepackage{tikz}
+---
+
+# ------------
+
+Placeholder
+
+
+
+<!--chapter:end:index.Rmd-->
+
+# Introduction
+
+A reference [@edwards2013].
+
+\begin{equation}
+  1 + 1
+  \label{eq:test}
+\end{equation}
+
+See Appendix \@ref(app:first-appendix). See Equation \@ref(eq:test).
+
+<!--chapter:end:01_introduction.Rmd-->
+
+
+# Methods
+
+Placeholder
+
+
+
+<!--chapter:end:02_methods.Rmd-->
+
+# Results
+
+## Example with repeat_header 
+```{r KableFormating}
+
+widelong_df2 <- widelong_df %>%
+  select(-X15)
+
+
+# kable styling with repeating header over multiple pages
+csasdown::csas_table(
+  widelong_df2,
+  caption = "Example wide Long Table with header over multiple pages",
+  longtable = TRUE,
+  format = "latex",
+  landscape = TRUE,
+  font_size = 8) %>%
+  column_spec(column = 1, width = "3.6 cm") %>%
+  add_header_above(c("Tows", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14")) %>%
+kable_styling(latex_options = c("repeat_header"))
+  
+```
+
+## Example from web
+
+```{r}
+long_dt <- rbind(mtcars, mtcars)
+
+kable(
+      long_dt, 
+      format    = "latex", 
+      longtable = T, 
+      booktabs  = T, 
+      caption   = "Longtable from web using kable"
+      ) %>%
+add_header_above(c(" ", "Group 1" = 5, "Group 2" = 6)) %>%
+kable_styling(latex_options = c("repeat_header"))
+```
+
+
+<!--chapter:end:03_results.Rmd-->
+
+# Discussion
+
+<!--chapter:end:04_discussion.Rmd-->
+
+
+# THE FIRST APPENDIX {#app:first-appendix}
+
+Placeholder
+
+
+
+<!--chapter:end:05_appendix.Rmd-->
+
+<!-- If you want to references to appear somewhere before the end, add: -->
+<!-- <div id="refs"></div> -->
+<!-- where you want it to appear -->
+
+<!-- In general, you shouldn't need to edit this file with the exception of
+the following French/English translation. For a French document, set the following header to: # Références Citées  {-} -->
+
+\clearpage
+
+# References
+
+<!--chapter:end:06_bibliography.Rmd-->
+
