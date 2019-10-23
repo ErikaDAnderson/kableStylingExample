@@ -1,39 +1,26 @@
 # Results
 
 ## Example with repeat_header 
-```{r KableFormating}
 
-widelong_df2 <- widelong_df %>%
-  select(-X15)
+```{r KableFormatingRepeat, cache = FALSE}
 
+# make slightly skinny but longer dummy data
+yrs2 <- 1:90
+ages2 <- 1:14
+widelong_df2 <- matrix(round(rnorm(length(yrs2) * length(ages2), 20), 4),
+  nr = length(yrs2),
+  nc = length(ages2),
+  dimnames = list(year = yrs2, age = ages2))
 
-# kable styling with repeating header over multiple pages
+# write table
 csasdown::csas_table(
   widelong_df2,
-  caption = "Example wide Long Table with header over multiple pages",
-  longtable = TRUE,
+  caption = "Example of long wide table with header above column names",
   format = "latex",
+  escape = FALSE,
   landscape = TRUE,
+  repeat_header = TRUE,
   font_size = 8) %>%
-  column_spec(column = 1, width = "3.6 cm") %>%
-  add_header_above(c("Tows", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14")) %>%
-kable_styling(latex_options = c("repeat_header"))
-  
+  add_header_above(c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"), line_sep = 0)
+
 ```
-
-## Example from web
-
-```{r}
-long_dt <- rbind(mtcars, mtcars)
-
-kable(
-      long_dt, 
-      format    = "latex", 
-      longtable = T, 
-      booktabs  = T, 
-      caption   = "Longtable from web using kable"
-      ) %>%
-add_header_above(c(" ", "Group 1" = 5, "Group 2" = 6)) %>%
-kable_styling(latex_options = c("repeat_header"))
-```
-
